@@ -2,8 +2,7 @@ import time
 import pyperclip
 from plyer import notification
 from detect_sensitive import is_sensitive_data
-from log_activity import log_to_html, clear_clipboard
-
+from log_activity import log_to_db, clear_clipboard
 
 def send_alert(content):
     notification.notify(
@@ -11,8 +10,6 @@ def send_alert(content):
         message=f"Sensitive content detected: {content}",
         timeout=10  
     )
-
-
 
 def monitor_clipboard():
     previous_data = ""
@@ -27,7 +24,7 @@ def monitor_clipboard():
                     print("Sensitive data detected! Clearing clipboard...")
                     send_alert(current_data)  
                     clear_clipboard()  
-                    log_to_html(current_data)  
+                    log_to_db(current_data)  # Log to MySQL database
                 previous_data = current_data
         except Exception as e:
             print(f"Error: {e}")

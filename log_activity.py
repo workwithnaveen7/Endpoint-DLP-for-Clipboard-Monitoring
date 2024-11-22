@@ -1,29 +1,36 @@
+import mysql.connector
 from datetime import datetime
-import pyperclip
 
-def log_to_html(data):
+# MySQL database connection setup
+def connect_to_db():
+    return mysql.connector.connect(
+        host="localhost",
+        user="root",        # Replace with your MySQL username
+        password="2005",        # Replace with your MySQL password
+        database="clipboard_monitor"
+    )
 
-    file_name = "sensitive_clipboard_logs.html"
-
+def log_to_db(data):
     try:
-        with open(file_name, "a") as file:
+        # Connect to MySQL
+        conn = connect_to_db()
+        cursor = conn.cursor()
 
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            entry = f"""
-            <div style="border: 1px solid #ddd; margin: 10px; padding: 10px;">
-                <p><strong>Timestamp:</strong> {timestamp}</p>
-                <p><strong>Content:</strong> {data}</p>
-            </div>
-            """
-            file.write(entry)
+        # Insert sensitive data into logs table
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cursor.execute("INSERT INTO logs (content, timestamp) VALUES (%s, %s)", (data, timestamp))
 
-        print(f"Sensitive data logged to {file_name}")
+        conn.commit()
+        cursor.close()
+        conn.close()
+        print("Sensitive data logged to MySQL database")
     except Exception as e:
-        print(f"Error writing to HTML file: {e}")
+        print(f"Error logging data to MySQL: {e}")
 
 def clear_clipboard():
     try:
-        pyperclip.copy("")  
+        import pyperclip
+        pyperclip.copy("")  # Clear the clipboard
         print("Clipboard cleared.")
     except Exception as e:
         print(f"Error clearing clipboard: {e}")

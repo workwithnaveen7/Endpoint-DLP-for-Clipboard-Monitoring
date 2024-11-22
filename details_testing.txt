@@ -1,0 +1,14 @@
+Testing aadhaar no.
+1234-5678-9012
+
+Testing Pan no.
+ABCDE1234F
+
+Testing Phone no.
+9876543210
+
+Testing bank acc no.
+1234567890123456
+
+Testing email
+testing@gmail.com
