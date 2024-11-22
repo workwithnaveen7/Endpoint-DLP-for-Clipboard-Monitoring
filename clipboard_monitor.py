@@ -18,13 +18,13 @@ def monitor_clipboard():
         try:
             current_data = pyperclip.paste()
             if current_data != previous_data:
-                print(f"Clipboard updated: {current_data}")
+                #print(f"Clipboard updated: {current_data}")
                 
                 if is_sensitive_data(current_data):
                     print("Sensitive data detected! Clearing clipboard...")
                     send_alert(current_data)  
                     clear_clipboard()  
-                    log_to_db(current_data)  # Log to MySQL database
+                    log_to_db(current_data)  
                 previous_data = current_data
         except Exception as e:
             print(f"Error: {e}")
