@@ -32,3 +32,20 @@ As an endpoint DLP solution, this tool protects individual workstations, which a
 
 ## Conclusion
 Using the Endpoint DLP for Clipboard Monitoring project can significantly improve data loss prevention efforts in any organization. It provides real-time detection and management of sensitive data, enhances user awareness, ensures compliance, and strengthens endpoint security, making it an invaluable tool in the fight against data breaches and accidental data leaks.
+
+## Working:
+
+### User Authentication
+![DLP 1 login](https://github.com/user-attachments/assets/2aed25a3-fbef-469d-bfeb-88e86ac15f93)
+
+### Notifying user that sensitive content is detected
+![DLP 2 notify](https://github.com/user-attachments/assets/3107838f-71f6-45d6-b253-2e4b822d16b4)
+
+### Clearing the clipboard 
+![DLP 3 data clear](https://github.com/user-attachments/assets/517b25cd-f526-4e40-ae37-bc17375ca032)
+
+### Logging the data in MySQL database for review
+![DLP 4 logging](https://github.com/user-attachments/assets/a015edf4-fa8b-4449-9b00-6424886277a4)
+
+
+
